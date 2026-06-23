@@ -1,0 +1,2 @@
+silhouette,calinski_harabasz,davies_bouldin,inertia,lomo_auc,average_precision,brier_score,prescriptive_lift,mean_xg_when_recommended,mean_xg_when_not_recommended,dom_pct_wins,dom_pct_other
+0.19815502984259148,81.45672490265245,1.62097248088021,4452.424726526807,0.6363636363636365,0.7523695602642972,0.23409812352427745,0.5693552609229929,0.3308116179136596,-0.23854364300933334,28.2,18.4

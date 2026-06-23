@@ -1,0 +1,5 @@
+cluster,mar_xg_rate,opp_xg_rate,xg_diff,mar_pass_completion_rate,mar_pass_completion_delta,mar_pass_completion_under_pressure,mar_pressure_intensity,opp_pressure_intensity,mar_territory_mean_x,opp_territory_mean_x,territory_diff,momentum_index,mar_progressive_pass_rate,opp_progressive_pass_rate,mar_shot_rate,opp_shot_rate,score_diff,time_remaining_proxy
+0,0.002,0.053,-0.755,0.729,-0.17,0.604,1.276,1.182,41.977,72.141,-30.164,0.313,0.367,0.332,0.027,0.136,0.5,25.0
+1,0.041,0.001,0.601,0.863,-0.022,0.772,0.735,1.109,75.12,34.546,40.574,0.207,0.314,0.402,0.229,0.027,0.71,30.613
+2,0.007,0.002,0.072,0.892,0.012,0.779,1.157,1.403,57.023,48.061,8.962,0.178,0.291,0.325,0.09,0.04,0.147,64.993
+3,0.014,0.007,0.106,0.806,-0.087,0.751,1.474,1.153,56.39,53.054,3.336,0.575,0.4,0.341,0.121,0.114,0.622,23.89

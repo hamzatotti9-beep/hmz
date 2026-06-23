@@ -1,0 +1,71 @@
+======================================================================
+CRISP-DM PHASE 4 — MODELLING REPORT
+Prescriptive DSS for Football Coaches | Morocco AFCON 2023
+======================================================================
+
+[A] GAME-STATE CLUSTERS
+   K = 4  |  Features: 18
+   Cluster 0: Pressing_Under_Threat  (n_minutes=30)
+   Cluster 1: Dominant_Efficient  (n_minutes=93)
+   Cluster 2: Chasing_Game  (n_minutes=150)
+   Cluster 3: Balanced_Phase  (n_minutes=127)
+
+[B] CLUSTER PROFILES
+cluster                                  0       1       2       3
+mar_xg_rate                          0.002   0.041   0.007   0.014
+opp_xg_rate                          0.053   0.001   0.002   0.007
+xg_diff                             -0.755   0.601   0.072   0.106
+mar_pass_completion_rate             0.729   0.863   0.892   0.806
+mar_pass_completion_delta           -0.170  -0.022   0.012  -0.087
+mar_pass_completion_under_pressure   0.604   0.772   0.779   0.751
+mar_pressure_intensity               1.276   0.735   1.157   1.474
+opp_pressure_intensity               1.182   1.109   1.403   1.153
+mar_territory_mean_x                41.977  75.120  57.023  56.390
+opp_territory_mean_x                72.141  34.546  48.061  53.054
+territory_diff                     -30.164  40.574   8.962   3.336
+momentum_index                       0.313   0.207   0.178   0.575
+mar_progressive_pass_rate            0.367   0.314   0.291   0.400
+opp_progressive_pass_rate            0.332   0.402   0.325   0.341
+mar_shot_rate                        0.027   0.229   0.090   0.121
+opp_shot_rate                        0.136   0.027   0.040   0.114
+score_diff                           0.500   0.710   0.147   0.622
+time_remaining_proxy                25.000  30.613  64.993  23.890
+
+[C] INTERVENTION OUTCOME PREDICTOR
+   Target: outcome_positive (xG diff improved in 15-min post-window)
+   Algorithm: RandomForestClassifier (n=200, balanced)
+   CV: Leave-One-Match-Out (LOMO)
+   Samples: 21
+
+[D] TOP PREDICTIVE FEATURES
+   xg_diff                                       0.2315
+   momentum_index                                0.1779
+   mar_xg_rate                                   0.1505
+   opp_xg_rate                                   0.0977
+   mar_pass_completion_delta                     0.0787
+   mar_pass_completion_rate                      0.0712
+   mar_territory_mean_x                          0.0625
+   mar_pressure_intensity                        0.0343
+
+[E] CLUSTER-CONDITIONAL INTERVENTION PROFILES
+        cluster_label intervention_type  count  positive_rate  mean_minute  mean_score_diff  mean_momentum
+       Balanced_Phase      substitution     11          0.273       67.455            0.636          0.630
+         Chasing_Game   formation_shift      1          1.000       69.000           -1.000          0.271
+         Chasing_Game      substitution      1          1.000       68.000           -1.000          0.308
+   Dominant_Efficient   formation_shift      1          1.000       81.000            3.000          0.623
+   Dominant_Efficient      substitution      5          1.000       72.000            1.800          0.291
+Pressing_Under_Threat      substitution      2          0.000       79.000            0.000          0.472
+
+[F] MODELLING NOTES & LIMITATIONS
+
+   - Only 4 matches (n=21 interventions) → severe sample constraint.
+     Models are directionally valid but should be retrained on the full
+     StatsBomb AFCON 2023 dataset (all 52 matches) before production use.
+   - LOMO-CV is the correct evaluation strategy (avoids data leakage across
+     matches); AUC is an approximation given the tiny fold sizes.
+   - The RandomForest is used for feature importance; the DecisionTree
+     provides human-readable rules for the coach interface.
+   - Game-state clustering is unsupervised — semantic labels are assigned
+     post-hoc from relative feature rankings, not from football ontology.
+   - Next step: expand training corpus to all AFCON teams + other StatsBomb
+     competitions for robust prescriptive recommendations.

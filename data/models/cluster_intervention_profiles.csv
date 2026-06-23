@@ -1,0 +1,7 @@
+cluster_label,intervention_type,count,positive_rate,mean_minute,mean_score_diff,mean_momentum
+Balanced_Phase,substitution,11,0.273,67.455,0.636,0.63
+Chasing_Game,formation_shift,1,1.0,69.0,-1.0,0.271
+Chasing_Game,substitution,1,1.0,68.0,-1.0,0.308
+Dominant_Efficient,formation_shift,1,1.0,81.0,3.0,0.623
+Dominant_Efficient,substitution,5,1.0,72.0,1.8,0.291
+Pressing_Under_Threat,substitution,2,0.0,79.0,0.0,0.472
